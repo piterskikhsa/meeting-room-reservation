@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load permission_tags %}
+
+{% block title %}{{ object.title }}{% endblock %}
+
+{% block content %}
+    <h1 class="title center">{{ object.title }} {% if request.user|can:'edit_meeting_room' %}
+        <a class="link-edit" href="{% url 'room-edit' object.id %}" title="Изменить комнату"></a>
+    {% endif %}</h1>
+
+    <p class="p-10">В комнате {{ object.chair_cnt }} мест</p>
+    <div class="equip">
+        <p class="equip__item {% if object.projector %}stock{% endif %}">Проектор</p>
+        <p class="equip__item {% if object.marker_board %}stock{% endif %}">Маркерная доска</p>
+    </div>
+    <p class="description p-10">{{ object.description }}</p>
+    <ul class="reservation">
+        <p class="p-10">Зарезервированное время:</p>
+
+        {% for time in object.approved_reservation %}
+            <li class="reservation__item">
+            {{ time.start_meeting_time|date:'d.m.Y' }}
+            {{ time.start_meeting_time|date:'H:m' }} - {{ time.end_meeting_time|date:'H:m' }}
+            {{ time.user.get_full_name }}
+            </li>
+        {% endfor %}
+    </ul>
+    <footer class="footer">
+    <a class="btn btn-success reservation__btn" href="{% url 'reserved' object.id%}">Забронировать</a>
+
+    </footer>
+{% endblock %}

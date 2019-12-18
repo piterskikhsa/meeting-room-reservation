@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load permission_tags %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+     {% if request.user|can:'confirm_reservation' %}
+        <div class="grid-sidebar">
+        <div class="room__wrapper room__wrapper-sidebar">
+    {% else %}
+        <div class="room__wrapper">
+    {% endif %}
+        <ul class="room">
+        {% for room in rooms %}
+            <li class="room__item">
+                <a class="room__link" href="{% url 'room-detail' room.id %}">
+                    <div class="room__information">
+                        <div class="room__title">{{ room.title }}</div>
+                        <div>{{ room.chair_cnt }} Мест</div>
+                        {% if room.meetings_time.count > 0  %}
+                            <div class="room__time"> Time {{ room.meetings_time.first.start_meeting_time|date:'H:m' }} - {{ room.meetings_time.first.end_meeting_time|date:'H:m' }}</div>
+                        {% else %}
+                            <div>Свободна</div>
+                        {% endif %}
+                    </div>
+                    <div class="room__equip">
+                        <div class="room__img {% if room.projector %}projector{% endif %}"></div>
+                        <div class="room__img {% if room.marker_board %}board{% endif %}"></div>
+                    </div>
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+    {% if request.user|can:'confirm_reservation' %}
+        <div class="confirm_requests sidebar">
+            {% if confirm_requests.count > 0 %}
+            <ul class="confirm">
+                {% for confirm_request in confirm_requests %}
+                    <li class="confirm__item">
+                        <p class="room__title">{{ confirm_request.room.title }}</p>
+                        <p class="room__time">{{ confirm_request.start_meeting_time|date:'d.m.Y H:m' }} - {{ confirm_request.end_meeting_time|date:'d.m.Y H:m' }}</p>
+                        <div class="confirm__btn">
+                            <button class="btn btn-success" data-url="/confirm-request/{{ confirm_request.pk }}/">Подтвердить</button>
+                            <button class="btn btn-danger" data-url="/cancel-request/{{ confirm_request.pk }}/">Отказать</button>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+                <p class="center mt-20">Заявок нет</p>
+            {% endif %}
+
+        </div>
+    {% endif %}
+    </div>
+
+{% endblock %}

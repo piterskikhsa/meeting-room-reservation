@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load permission_tags %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+    <h1 class="title">Добавить менеджера</h1>
+    <table class="users">
+    <tr><th>Логин/ФИО</th><th>Группы</th></tr>
+     {% for user in user_list %}
+         <tr class="users_item">
+            <td><p>{{ user.username }}/ </p> <p>{{ user.get_full_name }}</p> </td>
+             <td>
+                 {% for group in user.groups.all %}
+                    <p>{{ group }}</p>
+                 {% endfor %}
+             {% if not user|has_role:'office_manager' %}
+                 <a class="link" href="{% url 'add-manager' user_id=user.id %}">Добавить менеджера</a>
+             {% endif %}
+             </td>
+         </tr>
+     {% endfor %}
+    </table>
+{% endblock %}

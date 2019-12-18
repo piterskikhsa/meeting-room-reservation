@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Войти{% endblock %}
+
+{% block content %}
+    <form class="form" method="post">
+        {% csrf_token %}
+        {% include 'blocks/form.html' %}
+        <input type="submit" class="btn btn-success" value="Submit">
+        <a href="{% url 'signup' %}"> Зарегистрироваться</a>
+    </form>
+{% endblock %}
