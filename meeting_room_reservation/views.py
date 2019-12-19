@@ -45,6 +45,12 @@ class MeetingRoomDetailView(LoginRequiredMixin, DetailView):
                                                        to_attr='approved_reservation'))
 
 
+class MeetingRoomCreateView(LoginRequiredMixin, HasRoleMixin, CreateView):
+    model = MeetingRoom
+    allowed_roles = 'office_manager'
+    fields = ('title', 'chair_cnt', 'projector', 'marker_board', 'description')
+
+
 class MeetingRoomUpdateView(LoginRequiredMixin, HasRoleMixin, UpdateView):
     model = MeetingRoom
     allowed_roles = 'office_manager'

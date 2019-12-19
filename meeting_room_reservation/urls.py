@@ -10,6 +10,7 @@ urlpatterns = [
     path('room/<int:pk>/reserved/', views.ReservedMeetingTimeCreateView.as_view(), name='reserved'),
     path('room/<int:pk>/edit/', views.MeetingRoomUpdateView.as_view(), name='room-edit'),
     path('room/<int:pk>/', views.MeetingRoomDetailView.as_view(), name='room-detail'),
+    path('room/create/', views.MeetingRoomCreateView.as_view(), name='room-create'),
     path('load-requests/', views.load_requests, name='load-request'),
     path('confirm-request/<int:reserve_id>/', views.confirm_reserving_meeting_room, name='confirm-request'),
     path('cancel-request/<int:reserve_id>/', views.cancel_reserving_meeting_room, name='cancel-request'),

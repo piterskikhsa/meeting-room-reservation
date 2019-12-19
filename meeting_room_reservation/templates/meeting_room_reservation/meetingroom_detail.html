@@ -4,6 +4,7 @@
 {% block title %}{{ object.title }}{% endblock %}
 
 {% block content %}
+    <div class="container">
     <h1 class="title center">{{ object.title }} {% if request.user|can:'edit_meeting_room' %}
         <a class="link-edit" href="{% url 'room-edit' object.id %}" title="Изменить комнату"></a>
     {% endif %}</h1>
@@ -29,4 +30,5 @@
     <a class="btn btn-success reservation__btn" href="{% url 'reserved' object.id%}">Забронировать</a>
 
     </footer>
+    </div>
 {% endblock %}

@@ -101,6 +101,40 @@ h1 {
     position: relative;
     margin-bottom: 12px;
 }
+.page__form {
+    height: 100%;
+}
+.login-form__wrapper {
+    position: relative;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 20px 20px;
+    width: 20%;
+    min-width: 310px;
+    margin: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: 2px 6px 10px #364b67;
+}
+
+.login-form .form__group {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.login-form input {
+    width: 100%;
+    border: 1px solid #b3b3b3;
+    border-radius: 3px;
+    padding: 10px 16px;
+    z-index: 1;
+}
+
+.login-form .form__label {
+    font-size: 14px;
+    text-transform: capitalize;
+    color: #7d7d7d;
+}
 
 .name {
     text-transform: capitalize;
@@ -119,6 +153,7 @@ h1 {
     font-weight: 200;
     margin-bottom: 20px;
     padding: 20px 0;
+    position: relative;
 }
 
 .navbar{
@@ -150,6 +185,7 @@ h1 {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 15px;
+    position: relative;
 }
 
 .grid-sidebar {
@@ -304,6 +340,54 @@ h1 {
     font-size: 13px;
 }
 
+.menu-btn {
+    display: none;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 50%;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.menu-btn span,
+.menu-btn span::before,
+.menu-btn span::before,
+.menu-btn span::after {
+    position: absolute;
+    top: 50%;
+    left:50%;
+    margin-top: -1px;
+    margin-left: -10px;
+    width: 20px;
+    height: 2px;
+    background-color: #064CDB;
+}
+.menu-btn span::before,
+.menu-btn span::after {
+    content: '';
+    display: block;
+    transition: 0.5s;
+}
+.menu-btn span::after {
+    transform: translateY(-5px);
+}
+.menu-btn span::before {
+    transform: translateY(5px);
+}
+.menu-btn__active span::after {
+    transform-origin: left bottom;
+    width: 10px;
+    transform: rotate(35deg);
+}
+.menu-btn__active span::before {
+    transform-origin: left top;
+    width: 10px;
+    transform: rotate(-35deg);
+}
+
 @media (max-width: 1200px) {
     .container {
         max-width: 970px;
@@ -335,6 +419,33 @@ h1 {
         height: 30px;
     }
     textarea {
-    width: 100%;
-}
+        width: 100%;
+    }
+    .menu-btn {
+        display: block;
+    }
+    .profile {
+        margin-top: 35px;
+        padding-top: 30px;
+        position: fixed;
+        flex-direction: column;
+        height: 100%;
+        background-color: #064CDB;
+        transition: 0.5s;
+        transform-origin: right center;
+        transform: scaleX(0) translateX(20%);
+        opacity: 0;
+        right: 0;
+    }
+    .profile_active {
+        display: block;
+        transform: scaleX(1) translateX(0%);
+        opacity: 1;
+        z-index: 10;
+    }
+    .profile_active .profile__item {
+        margin-bottom: 15px;
+        font-size: 16px;
+    }
+
 }

@@ -3,9 +3,14 @@
 {% block title %}Регистрация{% endblock %}
 
 {% block content %}
-    <form class="form" action="" method="post">
-    {% csrf_token %}
-    {% include 'blocks/form.html' %}
-    <input type="submit" value="Submit">
-    </form>
+    <div class="page__form">
+        <div class="login-form__wrapper">
+            <form class="form login-form" action="" method="post">
+            {% csrf_token %}
+            {% include 'blocks/form.html' %}
+            <input class=" btn btn-success" type="submit">
+                <a href="{% url 'login' %}"> Войти</a>
+            </form>
+        </div>
+    </div>
 {% endblock %}

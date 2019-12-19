@@ -3,9 +3,11 @@
 {% block title %}Зарезервировать переговорку{% endblock %}
 
 {% block content %}
-    <form class="form" action="" method="post">
-    {% csrf_token %}
-    {% include 'blocks/form.html' %}
-    <input type="submit" value="Submit">
-    </form>
+    <div class="container">
+        <form class="form" action="" method="post">
+        {% csrf_token %}
+        {% include 'blocks/form.html' %}
+        <input type="submit" value="Submit">
+        </form>
+    </div>
 {% endblock %}

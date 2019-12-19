@@ -86,4 +86,14 @@ document.addEventListener('DOMContentLoaded', function () {
         reservationWrapper.addEventListener('click', clickBtn);
         const intevalHandler = setInterval(reloadRequests, 10000);
     }
+
+    const menuBtn = document.querySelector('.menu-btn');
+    const navMenu = document.querySelector('.profile');
+    if (menuBtn !== null) {
+        menuBtn.addEventListener('click', function (event) {
+            event.preventDefault();
+            this.classList.toggle('menu-btn__active');
+            navMenu.classList.toggle('profile_active');
+        });
+    }
 });

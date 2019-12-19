@@ -41,6 +41,9 @@ class ViewTestCase(TestCase):
         response = self.client.get(reverse('room-detail', kwargs={'pk': 1}))
         self.assertRedirects(response, '/login/?next=/room/1/')
 
+        response = self.client.get(reverse('room-create'))
+        self.assertRedirects(response, '/login/?next=/room/create/')
+
         response = self.client.get(reverse('load-request'))
         self.assertRedirects(response, '/login/?next=/load-requests/')
 
