@@ -111,6 +111,7 @@ def confirm_reserving_meeting_room(request, reserve_id):
     if request.is_ajax():
         reserving_time = get_object_or_404(ReservedMeetingTime, pk=reserve_id)
         reserving_time.confirm_reserving()
+        #TODO send user notification
         return HttpResponse('done')
     return JsonResponse({'error': 'Method not allowed'}, status=HTTPStatus.METHOD_NOT_ALLOWED)
 
@@ -123,6 +124,7 @@ def cancel_reserving_meeting_room(request, reserve_id):
     if request.is_ajax():
         reserving_time = get_object_or_404(ReservedMeetingTime, pk=reserve_id)
         reserving_time.cancel_reserving()
+        #TODO send user notification
         data['success'] = 'done'
         return JsonResponse(data)
     data['error'] = "Method not allowed"
