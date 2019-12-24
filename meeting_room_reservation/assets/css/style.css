@@ -243,6 +243,34 @@ h1 {
 .room__img:first-of-type {
     margin-left: 0;
 }
+.room__add {
+    background-color: #00630e;
+    display: inline-block;
+    color: #fff;
+    margin: 20px 0;
+    font-weight: 500;
+    position: relative;
+    padding-left: 25px;
+}
+
+.room__add:hover {
+    background-color: #03a61a;
+}
+
+.room__add::before,.room__add::after {
+    content: "";
+    display: inline-block;
+    background-color: #fff;
+    position: absolute;
+    width: 10px;
+    height: 2px;
+    left: 10px;
+    top: 19px
+}
+.room__add::before {
+   transform: rotate(90deg);
+}
+
 .projector {
     background: url("../img/icons/projector.svg") no-repeat center;
     background-size: cover;

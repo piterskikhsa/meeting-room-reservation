@@ -33,7 +33,7 @@
         {% endfor %}
         {% if request.user|can:'confirm_reservation' %}
            <li class="room__item">
-               <a class="room__link" href="{% url 'room-create' %}">Добавить</a>
+               <a class="room__link room__add" href="{% url 'room-create' %}">Добавить</a>
            </li>
         {% endif %}
         </ul>
