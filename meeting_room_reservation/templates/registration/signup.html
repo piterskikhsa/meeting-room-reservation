@@ -8,7 +8,7 @@
             <form class="form login-form" action="" method="post">
             {% csrf_token %}
             {% include 'blocks/form.html' %}
-            <input class=" btn btn-success" type="submit">
+            <input class=" btn btn-success" type="submit" value="Отправить">
                 <a href="{% url 'login' %}"> Войти</a>
             </form>
         </div>
